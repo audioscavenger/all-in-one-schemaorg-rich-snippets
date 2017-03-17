@@ -160,7 +160,7 @@ function display_rich_snippet($content) {
                 });
 			</script>';
 		}
-		$event .= '<div class="aio-info">';
+		$event .= '<div class="aio-info" style="width:100%; margin:0;">';
 		
 		if(trim($event_title) != "")
 		{
@@ -1063,7 +1063,6 @@ if ( class_exists( 'FLBuilderLoader' ) )
 }
 else{ add_filter('the_content','display_rich_snippet'); }
 
-
 require_once(plugin_dir_path( __FILE__ ).'meta-boxes.php');
 function get_the_ip() {
     if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])) {
@@ -1077,6 +1076,7 @@ function get_the_ip() {
     }
 }
 function average_rating() {
+//	global $wpdb;
 	global $post;
 	
 	$data = get_post_meta($post->ID, 'post-rating', false);
@@ -1144,7 +1144,7 @@ function bsf_do_rating()
 function get_previous_rating($needle, $haystack, $strict = false) {
     foreach ($haystack as $item) {
         if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && get_previous_rating($needle, $item, $strict))) {
-            return !empty($item['user_rating']) ? $item['user_rating'] : '';
+            return @$item['user_rating'];
         }
     }
     return false;
@@ -1159,6 +1159,8 @@ function add_ajax_library() {
 }
 function bsf_add_rating()
 {
+//	ob_clean();
+	
 	if(isset($_POST['star-review']))
 		$stars = $_POST['star-review'];
 	else
@@ -1175,6 +1177,7 @@ function bsf_add_rating()
 }
 function bsf_update_rating()
 {
+//	ob_clean();
 	if(isset($_POST['star-review']))
 		$stars = $_POST['star-review'];
 	else

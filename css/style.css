@@ -36,7 +36,7 @@ td .tbl-bdf-td{
 	float: left;
 	width: 600px;
 	clear: both;
-	box-sizing: content-box;
+	box-sizing: border-box;
 }
 .snippet-markup {
 	float: left;
@@ -81,8 +81,9 @@ td .tbl-bdf-td{
 }
 .snippet-image {
 	float: left;
-	min-height: 190px;
-	width: 200px;	
+	min-height: 50%;
+	width: calc(35% - 10px);
+	margin: 5px 5px;	
 }
 .snippet-image img {
 	border: 2px solid #FFF;
@@ -144,8 +145,9 @@ td .tbl-bdf-td{
 	padding: 0.4em 1%;
 }
 .aio-info {
-	width: 400px;
+	width: calc(65% - 20px);
 	float: left;
+	margin: 0 10px;
 }
 .snippet-clear { clear:both;}
 /*********************************************************** Media queries **********************************************/
