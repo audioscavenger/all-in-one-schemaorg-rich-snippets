@@ -389,6 +389,13 @@ function bsf_metaboxes( array $meta_boxes ) {
 				'type' => 'file',
 			),
 			array(
+				'name' => __('Alt Text','rich-snippets'),
+				'desc' => __('Product Image Alt Text','rich-snippets'),
+				'id'   => $prefix . 'product_image_alt_text',
+				'class' => 'product',
+				'type' => 'text_small',
+			),
+			array(
 				'name' => __('Product Price','rich-snippets'),
 				'desc' => __('Enter the product Price.','rich-snippets'),
 				'id'   => $prefix . 'product_price',

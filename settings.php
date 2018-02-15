@@ -50,6 +50,7 @@ function add_product_option()
 		'product_rating'   =>	__('Author Rating','rich-snippets'),
 		'product_brand'	=>	__('Brand Name','rich-snippets'),
 		'product_name'	 =>	__('Product Name','rich-snippets'),
+		'product_image_alt_text'	 =>	__('Alt Text','rich-snippets'),
 		'product_agr'	  =>	__('Aggregate Rating','rich-snippets'),
 		'product_price'	=>	__('Price','rich-snippets'),
 		'product_avail'	=>	__('Product Availability','rich-snippets')

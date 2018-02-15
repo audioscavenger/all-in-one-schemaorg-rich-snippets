@@ -416,6 +416,7 @@ function display_rich_snippet($content) {
 		$product_brand = get_post_meta( $post->ID, '_bsf_product_brand', true);
 		$product_name = get_post_meta( $post->ID, '_bsf_product_name', true);
 		$product_image = get_post_meta($post->ID, '_bsf_product_image', true);
+		$product_image_alt_text = get_post_meta( $post->ID, '_bsf_product_image_alt_text', true);
 		$product_cat = get_post_meta($post->ID, '_bsf_product_cat', true);
 		$product_price = get_post_meta($post->ID, '_bsf_product_price', true);
 		$product_cur = get_post_meta($post->ID, '_bsf_product_cur', true);
@@ -428,9 +429,13 @@ function display_rich_snippet($content) {
 			$availability = "Available in Store Only";
 		else if(trim($product_status) == "preorder")
 			$availability = "Pre-Order Only";
+
+		if($product_image_alt_text == null) {
+			$product_image_alt_text = 'product image';
+		}
 		if(trim($product_image) != "")
 		{
-			$product .= '<div class="snippet-image"><img width="180" src="'.esc_url($product_image ).'" itemprop="image" alt="product image" /></div>';
+			$product .= '<div class="snippet-image"><img width="180" src="'.esc_url($product_image ).'" itemprop="image" alt="'.esc_attr($product_image_alt_text ).'" /></div>';
 		}
 		else
 		{
