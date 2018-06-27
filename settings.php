@@ -70,7 +70,18 @@ function add_recipe_option()
 		'recipe_time'	  =>	__('Total Time','rich-snippets'),
 		'recipe_desc'	=>	__('Description','rich-snippets'),
 		'recipe_nutrition'	=>	__('Nutrition','rich-snippets'),
+		'recipe_keywords'	=>	__('Keywords','rich-snippets'),
+		'recipe_category'	=>	__('Category','rich-snippets'),
+		'recipe_cuisine'	=>	__('Cuisine','rich-snippets'),
 		'recipe_ingredient'	=>	__('Ingredients','rich-snippets'),
+		'recipe_instructions'	=>	__('Instruction Steps','rich-snippets'),
+		'recipe_video_title'	=>	__('Video Title','rich-snippets'),
+		'recipe_video_desc'	=>	__('Video Description','rich-snippets'),
+		'recipe_video_thumb'	=>	__('Video Thumbnail','rich-snippets'),
+		'recipe_video_url'	=>	__('Video URL','rich-snippets'),
+		'recipe_video_emb_url'	=>	__('Embed Video','rich-snippets'),
+		'recipe_video_duration'	=>	__('Video Duration','rich-snippets'),
+		'recipe_video_date'	=>	__('Upload Date','rich-snippets'),
 		'recipe_rating'	=>	__('Average Rating','rich-snippets')
 	);
 	add_option('bsf_recipe',$recipe_opt);

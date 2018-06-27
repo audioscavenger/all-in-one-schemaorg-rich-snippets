@@ -534,7 +534,18 @@ function display_rich_snippet($content) {
 		$recipes_photo = get_post_meta( $post->ID, '_bsf_recipes_photo', true );
 		$recipes_desc = get_post_meta( $post->ID, '_bsf_recipes_desc', true );
 		$recipes_nutrition = get_post_meta( $post->ID, '_bsf_recipes_nutrition', true );
+		$recipes_keywords = get_post_meta( $post->ID, '_bsf_recipes_keywords', true );
+		$recipes_category = get_post_meta( $post->ID, '_bsf_recipes_category', true );
+		$recipes_cuisine = get_post_meta( $post->ID, '_bsf_recipes_cuisine', true );
 		$recipes_ingredient = get_post_meta( $post->ID, '_bsf_recipes_ingredient', true );
+		$recipes_instructions = get_post_meta( $post->ID, '_bsf_recipes_instructions', true );
+		$recipes_video_title = get_post_meta( $post->ID, '_bsf_recipes_video_title', true );
+		$recipes_video_desc = get_post_meta( $post->ID, '_bsf_recipes_video_desc', true );
+		$recipes_video_thumb = get_post_meta( $post->ID, '_bsf_recipes_video_thumb', true );
+		$recipes_video_url = get_post_meta( $post->ID, '_bsf_recipes_video_url', true );
+		$recipes_video_emb_url = get_post_meta( $post->ID, '_bsf_recipes_video_emb_url', true );
+		$recipes_video_duration = get_post_meta( $post->ID, '_bsf_recipes_video_duration', true );
+		$recipes_video_date = get_post_meta( $post->ID, '_bsf_recipes_video_date', true );
 		$count = rating_count();
 		$agregate = average_rating();
 		if(trim($recipes_photo) != "")
@@ -556,12 +567,51 @@ function display_rich_snippet($content) {
 				$recipe .= '<div class="snippet-label-img">'.esc_attr( stripslashes( $args_recipe['recipe_name'] ) ).'</div>';
 				
 			$recipe .= '<div class="snippet-data-img"><span itemprop="name">'.esc_attr( $recipes_name ).'</span></div>
-			<meta itemprop="description" content="'.esc_attr( htmlspecialchars_decode( $recipes_desc ) ).'" >
-			<meta itemprop="recipeIngredient" content="'.esc_attr( $recipes_ingredient ).'" >
-			<div itemprop="nutrition"
+			<meta itemprop="description" content="'.esc_attr( htmlspecialchars_decode( $recipes_desc ) ).'" >';
+			if(trim($recipes_keywords) != "") {
+				$recipe .= '<meta itemprop="keywords" content="'.esc_attr( $recipes_keywords ).'" >';
+			}
+			if(trim($recipes_category) != "") {
+				$recipe .= '<meta itemprop="recipeCategory" content="'.esc_attr( $recipes_category ).'" >';
+			}
+			if(trim($recipes_cuisine) != "") {
+				$recipe .= '<meta itemprop="recipeCuisine" content="'.esc_attr( $recipes_cuisine ).'" >';
+			}
+			$recipe .= '<meta itemprop="recipeIngredient" content="'.esc_attr( $recipes_ingredient ).'" >';
+			if(trim($recipes_instructions) != "") {
+				$recipe .= '<meta itemprop="recipeInstructions" content="'.esc_attr( $recipes_instructions ).'" >';
+			}
+			$recipe .= '<div itemprop="nutrition"
 		    itemscope itemtype="http://schema.org/NutritionInformation">
 		    <meta itemprop="calories" content="'.esc_attr( $recipes_nutrition ).'" ></div>
 			<div class="snippet-clear"></div>';
+		}
+		if(trim($recipes_video_title) != "" && trim($recipes_video_thumb) != "" && trim($recipes_video_desc) != "" && trim($recipes_video_date) != "" )
+		{
+			$recipe .= '<div itemprop="video"
+		    itemscope itemtype="http://schema.org/VideoObject">';
+		    if(trim($recipes_video_title) != ""){
+				$recipe .= '<meta itemprop="name" content="'.esc_attr( $recipes_video_title ).'">';
+		    }
+		    if(trim($recipes_video_desc) != ""){
+				$recipe .= '<meta itemprop="description" content="'.esc_attr( $recipes_video_desc ).'">';
+		    }
+		    if(trim($recipes_video_thumb) != ""){
+				$recipe .= '<meta itemprop="thumbnailUrl" content="'.esc_attr( $recipes_video_thumb ).'">';
+		    }
+			if(trim($recipes_video_url) != ""){
+				$recipe .= '<meta itemprop="contentUrl" content="'.esc_attr( $recipes_video_url ).'">';
+			}
+			elseif(trim($recipes_video_emb_url) != ""){
+				$recipe .= '<meta itemprop="embedURL" content="'.esc_attr( $recipes_video_emb_url ).'">';
+			}			
+			if(trim($recipes_video_duration) != ""){
+				$recipe .= '<meta itemprop="duration" content="'.esc_attr( $recipes_video_duration ).'">';		
+			}
+			if(trim($recipes_video_date) != ""){
+				$recipe .= '<meta itemprop="uploadDate" content="'.esc_attr( $recipes_video_date ).'">';	
+			}
+			$recipe .= '</div><div class="snippet-clear"></div>';
 		}
 		if(trim($authors_name) != "")
 		{
