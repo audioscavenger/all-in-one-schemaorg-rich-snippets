@@ -118,7 +118,7 @@ function display_rich_snippet($content) {
 				echo $review;
 			}		
 		}
-		else { return ( is_single() || is_page() ) ? $content.$review : $content; }
+		else { return ( is_single() || is_page() ) ? $review.$content : $content; }
 	} 
 	else if($type == '2')
 	{
@@ -232,7 +232,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$event : $content; }
+		else { return ( is_single() || is_page() ) ? $event.$content : $content; }
 	}
 	else if($type == '4')
 	{
@@ -290,7 +290,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$organization : $content; }
+		else { return ( is_single() || is_page() ) ? $organization.$content : $content; }
 	}
 	else if($type == '5')
 	{
@@ -396,7 +396,7 @@ function display_rich_snippet($content) {
 				echo $people;
 			}	
 		}
-		else { return ( is_single() || is_page() ) ? $content.$people : $content; }
+		else { return ( is_single() || is_page() ) ? $people.$content : $content; }
 	}
 	else if($type == '6')
 	{
@@ -506,7 +506,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$product : $content; }
+		else { return ( is_single() || is_page() ) ? $product.$content : $content; }
 	}
 	else if($type == '7')
 	{
@@ -613,7 +613,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$recipe : $content; }
+		else { return ( is_single() || is_page() ) ? $recipe.$content : $content; }
 	}
 	else if($type == '8')
 	{
@@ -725,7 +725,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$software : $content; }
+		else { return ( is_single() || is_page() ) ? $software.$content : $content; }
 	}
 	else if($type == '9')
 	{
@@ -798,7 +798,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$video : $content; }
+		else { return ( is_single() || is_page() ) ? $video.$content : $content; }
 	}
 	else if($type == '10')
 	{
@@ -913,7 +913,7 @@ function display_rich_snippet($content) {
 			}
 		}
 	
-		else { return ( is_single() || is_page() ) ? $content.$article : $content; }
+		else { return ( is_single() || is_page() ) ? $article.$content : $content; }
 	}else if($type == '11')
 	{
 		global $post;
@@ -1050,7 +1050,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$service : $content; }
+		else { return ( is_single() || is_page() ) ? $service.$content : $content; }
 	}	
 	 else {
 		return $content;
