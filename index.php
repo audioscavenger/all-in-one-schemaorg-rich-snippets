@@ -156,6 +156,7 @@ if ( !class_exists( "RichSnippets" ) )
 		function register_bsf_settings() {
 			require_once(plugin_dir_path( __FILE__ ).'settings.php');
 			add_woo_commerce_option();
+			add_position_option();
 			add_review_option();
 			add_event_option();
 			add_person_option();
@@ -258,7 +259,27 @@ if ( !class_exists( "RichSnippets" ) )
 					'snippet_title_color'  =>	$title_color,
 					'snippet_box_color'	=>	$box_color,
 				);
-				echo update_option('bsf_custom',$color_opt) ? _e( 'Settings saved !', 'rich-snippets') : _e( 'Error occured. Satings were not saved !', 'rich-snippets' );
+				echo update_option('bsf_custom',$color_opt) ? _e( 'Settings saved !', 'rich-snippets') : _e( 'Error occured. Settings were not saved !', 'rich-snippets' );
+
+				die();
+				}
+			}
+		}
+		function submit_position()
+		{
+			if ( ! current_user_can( 'manage_options'  ) ) {
+				// return if current user is not allowed to manage options.
+				return;
+			}
+			else {
+				if ( ! isset( $_POST['snippet_position_nonce_field'] ) || ! wp_verify_nonce( $_POST['snippet_position_nonce_field'], 'snippet_position_form_action' ) 
+				) {
+				   print 'Sorry, your nonce did not verify.';
+				   exit;
+				} 
+				else {
+				$position_option = esc_attr( $_POST['position_option'] );
+				echo update_option('bsf_custom',$position_option) ? _e( 'Settings saved !', 'rich-snippets') : _e( 'Error occured. Settings were not saved !', 'rich-snippets' );
 
 				die();
 				}

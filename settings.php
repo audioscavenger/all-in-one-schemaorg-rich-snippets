@@ -149,7 +149,7 @@ function add_color_option()
 	add_option('bsf_custom',$color_opt);
 }
 
-// Function for customization
+// Function for woo_commerce customization
 function add_woo_commerce_option()
 {
 	if ( !get_option( 'bsf_woocom_init_setting' ) ) {
@@ -162,6 +162,19 @@ function add_woo_commerce_option()
 		
 		add_option('bsf_woocom_setting', $woo_opt);
 		add_option('bsf_woocom_init_setting', 'done');
+	}
+}
+
+// Function for position customization
+function add_position_option()
+{
+	if ( !get_option( 'bsf_position_init_setting' ) ) {
+		// default
+		$position_opt = "bottom";
+  } else $position_opt = get_option( 'bsf_position_init_setting' );
+		
+		add_option('bsf_position_setting', $position_opt);
+		add_option('bsf_position_init_setting', 'done');
 	}
 }
 

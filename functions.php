@@ -1,4 +1,7 @@
 <?php
+// Place Snippet at the top https://wordpress.org/support/topic/place-snippet-at-the-top/
+// github https://github.com/UttamSharma007/all-in-one-schemaorg-rich-snippets/tree/summary_pos
+
 /**
  * Template Name: Plugin Functions
  *
@@ -55,7 +58,12 @@ function display_rich_snippet($content) {
 	$args_color = get_option('bsf_custom');
 	$id = $post->ID;
 	$type = get_post_meta($id, '_bsf_post_type', true);
-
+  $args_position = get_option('bsf_position_setting');
+  $content_top = $content_bottom = '';
+  if ($args_position == 'top') {
+    $content_top = $content;
+  } else $content_bottom = $content;
+  
 	if($type == '1')
 	{
 		global $post;
@@ -118,7 +126,7 @@ function display_rich_snippet($content) {
 				echo $review;
 			}		
 		}
-		else { return ( is_single() || is_page() ) ? $content.$review : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$review.$content_bottom : $content; }
 	} 
 	else if($type == '2')
 	{
@@ -232,7 +240,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$event : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$event.$content_bottom : $content; }
 	}
 	else if($type == '4')
 	{
@@ -290,7 +298,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$organization : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$organization.$content_bottom : $content; }
 	}
 	else if($type == '5')
 	{
@@ -396,7 +404,7 @@ function display_rich_snippet($content) {
 				echo $people;
 			}	
 		}
-		else { return ( is_single() || is_page() ) ? $content.$people : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$people.$content_bottom : $content; }
 	}
 	else if($type == '6')
 	{
@@ -506,7 +514,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$product : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$product.$content_bottom : $content; }
 	}
 	else if($type == '7')
 	{
@@ -613,7 +621,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$recipe : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$recipe.$content_bottom : $content; }
 	}
 	else if($type == '8')
 	{
@@ -725,7 +733,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$software : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$software.$content_bottom : $content; }
 	}
 	else if($type == '9')
 	{
@@ -798,7 +806,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$video : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$video.$content_bottom : $content; }
 	}
 	else if($type == '10')
 	{
@@ -913,7 +921,7 @@ function display_rich_snippet($content) {
 			}
 		}
 	
-		else { return ( is_single() || is_page() ) ? $content.$article : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$article.$content_bottom : $content; }
 	}else if($type == '11')
 	{
 		global $post;
@@ -1050,7 +1058,7 @@ function display_rich_snippet($content) {
 			}
 			
 		}
-		else { return ( is_single() || is_page() ) ? $content.$service : $content; }
+		else { return ( is_single() || is_page() ) ? $content_top.$service.$content_bottom : $content; }
 	}	
 	 else {
 		return $content;

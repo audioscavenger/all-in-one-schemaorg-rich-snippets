@@ -23,8 +23,13 @@ function rich_snippet_dashboard() {
 	$plugins_url = plugins_url();
 	if ( !get_option( 'bsf_woocom_init_setting' ) ) {
 		$args_woocom = true;
-	}else {
+	} else {
 		$args_woocom = get_option('bsf_woocom_setting');
+	}
+	if ( !get_option( 'bsf_position_init_setting' ) ) {
+		$args_position = "bottom";
+	} else {
+		$args_position = get_option('bsf_position_setting');
 	}
 	
 	$args_review = get_option('bsf_review');
@@ -41,6 +46,18 @@ function rich_snippet_dashboard() {
 	if( !empty( $args_woocom ) ) { 
 		$woo_setting = "Checked";
 	} 
+	
+  /* under the form id="bsf_position_editor": for some very strange reason,
+  // radio options POSTed have the exact opposite effect. So I just inverted
+  // the values in the radio inputs. It's a dirty trick that works fine.
+  */
+	$snippet_position_option_top = '';
+	$snippet_position_option_bottom = '';
+	if( $args_position == "bottom" ) { 
+		$snippet_position_option_bottom = "Checked";
+	} else {
+		$snippet_position_option_top = "Checked";
+  }
 	
 	if(isset($args_event["event_desc"]) ) { 
 		$event_desc = $args_event["event_desc"]; 
@@ -633,6 +650,29 @@ function rich_snippet_dashboard() {
 										</div>
 									</div>
 								</div>
+								<div class="postbox">
+									<div class="handlediv" title="Click to toggle"><br></div>
+										<h3 class="hndle">'.__("<span>Position of the snippet in the page</span>","rich-snippets").'</h3>
+										<div class="inside">
+											<form id="bsf_position_editor" method="post" action="">
+											'.wp_nonce_field( 'snippet_position_form_action', 'snippet_position_nonce_field' ).'
+											<table class="bsf_metabox">
+												<tr>
+													<th> <label for="snippet_position_option_top"> '.__('Top ', 'rich-snippets').' </label> </th>
+													<td> <input type="radio" name="position_option" id="snippet_position_option_top" value="bottom" '.$snippet_position_option_bottom.' /> </td>
+												</tr>
+												<tr>
+													<th> <label for="snippet_position_option_bottom"> '.__('Bottom', 'rich-snippets').' </label> </th>
+													<td> <input type="radio" name="position_option" id="snippet_position_option_bottom" value="top" '.$snippet_position_option_top.' /> </td>
+												</tr>
+												<tr>
+													<td><input id= "submit_position" type="submit" class="button-primary" name="position_submit" value="'.__("Update ").'"/></td>
+												</tr>
+											</table>
+											</form>
+										</div>
+									</div>
+								</div>
 							</div>
 					</div>
 				</div>
@@ -688,6 +728,27 @@ function rich_snippet_dashboard() {
 }
 // Update options
 
+if(isset($_POST['position_submit']))
+{
+	if ( ! isset( $_POST['snippet_position_nonce_field'] ) || ! wp_verify_nonce( $_POST['snippet_position_nonce_field'], 'snippet_position_form_action' ) 
+		) {
+		   print 'Sorry, your nonce did not verify.';
+		   exit;
+		} 
+	else {
+		$args = null;
+		if(isset($_POST["position_option"])) 
+		{
+			$args = $_POST["position_option"];
+		}	
+		else {
+			$args = "bottom";
+		}	
+		update_option( 'bsf_position_init_setting', 'done' );
+		$status = update_option('bsf_position_setting',$args);
+		displayStatus($status);
+	}
+}
 if(isset($_POST['setting_submit']))
 {
 	if ( ! isset( $_POST['snippet_woocommerce_nonce_field'] ) || ! wp_verify_nonce( $_POST['snippet_woocommerce_nonce_field'], 'snippet_woocommerce_form_action' ) 
@@ -955,7 +1016,7 @@ function add_footer_script()
         {
             var data = jQuery("#bsf_css_editor").serialize();
             var form_data = "action=bsf_submit_color&" + data;
-          //alert(form_data);
+            alert(form_data);
             jQuery.post(ajaxurl, form_data,
                 function (response) {
                     alert(response);
