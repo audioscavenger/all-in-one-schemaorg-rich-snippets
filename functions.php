@@ -58,9 +58,12 @@ function display_rich_snippet($content) {
 	$args_color = get_option('bsf_custom');
 	$id = $post->ID;
 	$type = get_post_meta($id, '_bsf_post_type', true);
+  
   $args_position = get_option('bsf_position_setting');
-  $content_top = $content_bottom = '';
-  if ($args_position == 'top') {
+  $content_top = '';
+  $content_bottom = '';
+  // for some strange reason, bsf_position_setting option value is inverted 
+  if ($args_position == 'bottom') {
     $content_top = $content;
   } else $content_bottom = $content;
   

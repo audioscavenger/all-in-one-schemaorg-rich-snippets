@@ -47,10 +47,6 @@ function rich_snippet_dashboard() {
 		$woo_setting = "Checked";
 	} 
 	
-  /* under the form id="bsf_position_editor": for some very strange reason,
-  // radio options POSTed have the exact opposite effect. So I just inverted
-  // the values in the radio inputs. It's a dirty trick that works fine.
-  */
 	$snippet_position_option_top = '';
 	$snippet_position_option_bottom = '';
 	if( $args_position == "bottom" ) { 
@@ -659,11 +655,11 @@ function rich_snippet_dashboard() {
 											<table class="bsf_metabox">
 												<tr>
 													<th> <label for="snippet_position_option_top"> '.__('Top ', 'rich-snippets').' </label> </th>
-													<td> <input type="radio" name="position_option" id="snippet_position_option_top" value="bottom" '.$snippet_position_option_bottom.' /> </td>
+													<td> <input type="radio" name="position_option" id="snippet_position_option_top" value="top" '.$snippet_position_option_top.' /> </td>
 												</tr>
 												<tr>
 													<th> <label for="snippet_position_option_bottom"> '.__('Bottom', 'rich-snippets').' </label> </th>
-													<td> <input type="radio" name="position_option" id="snippet_position_option_bottom" value="top" '.$snippet_position_option_top.' /> </td>
+													<td> <input type="radio" name="position_option" id="snippet_position_option_bottom" value="bottom" '.$snippet_position_option_bottom.' /> </td>
 												</tr>
 												<tr>
 													<td><input id= "submit_position" type="submit" class="button-primary" name="position_submit" value="'.__("Update ").'"/></td>
